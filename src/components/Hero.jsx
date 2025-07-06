@@ -335,7 +335,7 @@ const Hero = () => {
           </motion.a>
 
           <motion.a
-            href="https://drive.google.com/file/d/1brkishUs3_Ypix0lu_neQ6Arh2R69ZCU/view?usp=sharing"
+            href="https://drive.google.com/file/d/1gSNH32CG4RtAlDzoe4NNPmXYoFwtJpnp/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
