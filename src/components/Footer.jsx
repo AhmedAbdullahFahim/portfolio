@@ -289,20 +289,23 @@ const Footer = () => {
           >
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex items-center gap-2">
-                <p className="text-gray-400 flex items-center gap-2">
+                <p className="text-gray-400 flex items-center gap-2 text-sm sm:text-base">
                   © {currentYear} Ahmed Fahim. Made with
                   <motion.span
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
+                    className="inline-flex items-center"
                   >
-                    <FaHeart className="text-red-500" />
+                    <FaHeart className="text-red-500 text-sm" />
                   </motion.span>
-                  and lots of tea ☕
+                  <span className="hidden sm:inline">and lots of</span>
+                  <span className="sm:hidden">& ☕</span>
+                  <span className="hidden sm:inline">☕ tea</span>
                 </p>
               </div>
 
               <div className="flex items-center gap-4">
-                <span className="text-gray-500 text-sm">
+                <span className="text-gray-500 text-xs sm:text-sm">
                   Built with React & Tailwind CSS
                 </span>
                 <motion.button
