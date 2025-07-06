@@ -24,7 +24,7 @@ A beautiful, modern portfolio website built with React and Vite, featuring a dar
 ## 📁 Project Structure
 
 ```
-portfolio_v2/
+portfolio/
 ├── src/
 │   ├── components/
 │   │   ├── Header.jsx
