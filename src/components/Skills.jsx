@@ -84,7 +84,6 @@ const Skills = () => {
   const skills = [
     {
       name: "React",
-      level: 95,
       category: "frontend",
       icon: FaReact,
       color: "text-blue-400",
@@ -92,7 +91,6 @@ const Skills = () => {
     },
     {
       name: "JavaScript",
-      level: 95,
       category: "language",
       icon: FaJs,
       color: "text-yellow-400",
@@ -100,7 +98,6 @@ const Skills = () => {
     },
     {
       name: "TypeScript",
-      level: 90,
       category: "language",
       icon: SiTypescript,
       color: "text-blue-500",
@@ -108,7 +105,6 @@ const Skills = () => {
     },
     {
       name: "Next.js",
-      level: 90,
       category: "frontend",
       icon: SiNextdotjs,
       color: "text-white",
@@ -116,7 +112,6 @@ const Skills = () => {
     },
     {
       name: "React Native",
-      level: 85,
       category: "mobile",
       icon: FaMobile,
       color: "text-cyan-400",
@@ -124,7 +119,6 @@ const Skills = () => {
     },
     {
       name: "Expo",
-      level: 80,
       category: "mobile",
       icon: SiExpo,
       color: "text-white",
@@ -132,7 +126,6 @@ const Skills = () => {
     },
     {
       name: "Reanimated",
-      level: 82,
       category: "mobile",
       icon: FaMagic,
       color: "text-purple-400",
@@ -140,7 +133,6 @@ const Skills = () => {
     },
     {
       name: "Tailwind CSS",
-      level: 92,
       category: "styling",
       icon: SiTailwindcss,
       color: "text-teal-400",
@@ -148,7 +140,6 @@ const Skills = () => {
     },
     {
       name: "HTML/CSS",
-      level: 95,
       category: "styling",
       icon: FaHtml5,
       color: "text-orange-500",
@@ -156,7 +147,6 @@ const Skills = () => {
     },
     {
       name: "Git",
-      level: 85,
       category: "tools",
       icon: FaGitAlt,
       color: "text-orange-600",
@@ -164,7 +154,6 @@ const Skills = () => {
     },
     {
       name: "REST APIs",
-      level: 95,
       category: "backend",
       icon: FaDatabase,
       color: "text-green-400",
@@ -172,7 +161,6 @@ const Skills = () => {
     },
     {
       name: "Redux/Toolkit",
-      level: 85,
       category: "frontend",
       icon: SiRedux,
       color: "text-purple-500",
@@ -180,7 +168,6 @@ const Skills = () => {
     },
     {
       name: "React Query",
-      level: 88,
       category: "frontend",
       icon: FaSync,
       color: "text-indigo-400",
@@ -188,7 +175,6 @@ const Skills = () => {
     },
     {
       name: "Radix UI",
-      level: 82,
       category: "frontend",
       icon: FaCubes,
       color: "text-emerald-400",
@@ -196,7 +182,6 @@ const Skills = () => {
     },
     {
       name: "Firebase",
-      level: 80,
       category: "backend",
       icon: SiFirebase,
       color: "text-orange-400",
@@ -204,7 +189,6 @@ const Skills = () => {
     },
     {
       name: "SSE",
-      level: 80,
       category: "backend",
       icon: FaRocket,
       color: "text-blue-500",
@@ -212,7 +196,6 @@ const Skills = () => {
     },
     {
       name: "WebSocket",
-      level: 80,
       category: "backend",
       icon: FaDatabase,
       color: "text-cyan-500",
@@ -258,7 +241,6 @@ const Skills = () => {
       icon: FaReact,
       color: "text-blue-400",
       skills: ["React", "Next.js", "JavaScript", "TypeScript"],
-      level: 95,
     },
     {
       title: "Mobile Development",
@@ -267,7 +249,6 @@ const Skills = () => {
       icon: FaMobile,
       color: "text-cyan-400",
       skills: ["React Native", "Expo", "Reanimated"],
-      level: 90,
     },
     {
       title: "UI/UX Implementation",
@@ -276,7 +257,6 @@ const Skills = () => {
       icon: FaCss3Alt,
       color: "text-pink-400",
       skills: ["Tailwind CSS", "HTML/CSS", "Responsive Design"],
-      level: 90,
     },
     {
       title: "API Integration",
@@ -285,7 +265,6 @@ const Skills = () => {
       icon: FaDatabase,
       color: "text-green-400",
       skills: ["REST APIs", "Firebase", "Data Fetching"],
-      level: 88,
     },
   ];
 
@@ -359,18 +338,6 @@ const Skills = () => {
                   {area.title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-4">{area.description}</p>
-                <div className="flex justify-center mb-4">
-                  <div className="w-full bg-dark-blue-800/80 border border-dark-blue-600/50 rounded-full">
-                    <motion.div
-                      className="bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 h-1 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={
-                        inView ? { width: `${area.level}%` } : { width: 0 }
-                      }
-                      transition={{ duration: 1.5, delay: index * 0.2 }}
-                    />
-                  </div>
-                </div>
                 <div className="flex flex-wrap gap-1 justify-center">
                   {area.skills.map((skill) => (
                     <span
@@ -435,7 +402,7 @@ const Skills = () => {
                 whileHover={{ scale: 1.03, y: -5 }}
                 className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300 group"
               >
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-4">
                   <div className="w-14 h-14 bg-dark-blue-800/50 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                     <skill.icon className={`${skill.color} text-2xl`} />
                   </div>
@@ -444,28 +411,6 @@ const Skills = () => {
                       {skill.name}
                     </h3>
                     <p className="text-gray-400 text-sm">{skill.description}</p>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-accent-blue-400 font-bold text-xl">
-                      {skill.level}%
-                    </span>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <div className="w-full bg-dark-blue-700/90 border border-dark-blue-600/60 rounded-full shadow-inner">
-                    <motion.div
-                      className="h-2 bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 rounded-full relative shadow-sm"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1.5, delay: index * 0.2 }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
-                    </motion.div>
-                  </div>
-                  <div className="flex justify-between text-xs text-gray-400 mt-1">
-                    <span>Beginner</span>
-                    <span>Expert</span>
                   </div>
                 </div>
               </motion.div>

@@ -104,21 +104,19 @@ const About = () => {
   ];
 
   const techStack = [
-    { name: "React", icon: FaReact, color: "text-blue-400", level: 95 },
+    { name: "React", icon: FaReact, color: "text-blue-400" },
     {
       name: "TypeScript",
       icon: SiTypescript,
       color: "text-blue-500",
-      level: 90,
     },
-    { name: "Next.js", icon: SiNextdotjs, color: "text-white", level: 88 },
-    { name: "React Native", icon: FaMobile, color: "text-cyan-400", level: 85 },
-    { name: "Expo", icon: SiExpo, color: "text-white", level: 80 },
+    { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
+    { name: "React Native", icon: FaMobile, color: "text-cyan-400" },
+    { name: "Expo", icon: SiExpo, color: "text-white" },
     {
       name: "Tailwind CSS",
       icon: SiTailwindcss,
       color: "text-teal-400",
-      level: 92,
     },
   ];
 
@@ -327,7 +325,7 @@ const About = () => {
                           transition={{ delay: index * 0.1 }}
                           className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300"
                         >
-                          <div className="flex items-center gap-4 mb-4">
+                          <div className="flex items-center gap-4">
                             <div className="w-12 h-12 bg-dark-blue-800/50 rounded-xl flex items-center justify-center">
                               <tech.icon className={`${tech.color} text-2xl`} />
                             </div>
@@ -336,17 +334,9 @@ const About = () => {
                                 {tech.name}
                               </h4>
                               <p className="text-gray-400 text-sm">
-                                Proficiency: {tech.level}%
+                                Professional experience with this technology
                               </p>
                             </div>
-                          </div>
-                          <div className="w-full bg-dark-blue-800/50 rounded-full h-2">
-                            <motion.div
-                              className="bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 h-2 rounded-full"
-                              initial={{ width: 0 }}
-                              animate={{ width: `${tech.level}%` }}
-                              transition={{ duration: 1.5, delay: index * 0.2 }}
-                            />
                           </div>
                         </motion.div>
                       ))}

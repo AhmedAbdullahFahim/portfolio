@@ -470,23 +470,23 @@ const Experience = () => {
                   {[
                     {
                       name: "Frontend Development",
-                      level: 95,
                       color: "from-blue-500 to-cyan-500",
+                      description: "Building responsive, interactive user interfaces with modern frameworks",
                     },
                     {
                       name: "Mobile Development",
-                      level: 88,
                       color: "from-purple-500 to-pink-500",
+                      description: "Creating cross-platform mobile applications with React Native",
                     },
                     {
                       name: "UI/UX Implementation",
-                      level: 90,
                       color: "from-green-500 to-teal-500",
+                      description: "Translating designs into pixel-perfect, responsive experiences",
                     },
                     {
                       name: "API Integration",
-                      level: 85,
                       color: "from-orange-500 to-red-500",
+                      description: "Connecting frontend applications with backend services",
                     },
                   ].map((skill, index) => (
                     <motion.div
@@ -496,31 +496,18 @@ const Experience = () => {
                         inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
                       }
                       transition={{ delay: 0.1 * index, duration: 0.6 }}
-                      className="space-y-2"
+                      className="p-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:border-white/20 transition-all duration-300 group"
                     >
-                      <div className="flex justify-between items-center">
-                        <span className="text-white font-medium">
-                          {skill.name}
-                        </span>
-                        <span className="text-gray-400 text-sm">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="h-2 bg-dark-blue-700/50 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={
-                            inView ? { width: `${skill.level}%` } : { width: 0 }
-                          }
-                          transition={{
-                            delay: 0.2 + 0.1 * index,
-                            duration: 1,
-                            ease: "easeOut",
-                          }}
-                          className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative`}
-                        >
-                          <div className="absolute inset-0 bg-white/20 animate-pulse rounded-full" />
-                        </motion.div>
+                      <div className="flex items-center gap-3">
+                        <div className={`w-4 h-4 rounded-full bg-gradient-to-r ${skill.color}`} />
+                        <div>
+                          <h4 className="text-white font-medium text-lg">
+                            {skill.name}
+                          </h4>
+                          <p className="text-gray-400 text-sm">
+                            {skill.description}
+                          </p>
+                        </div>
                       </div>
                     </motion.div>
                   ))}
