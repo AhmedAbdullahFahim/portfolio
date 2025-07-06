@@ -153,7 +153,7 @@ const Footer = () => {
         </motion.div>
       </div>
 
-      <div className="container mx-auto px-6 py-16 relative z-10">
+      <div className="container mx-auto px-6 pt-16 pb-8 relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}
