@@ -44,11 +44,11 @@ const Skills = () => {
   //     if (skillsSection) {
   //       const rect = skillsSection.getBoundingClientRect();
   //       const isVisible = rect.top >= 0 && rect.top <= window.innerHeight * 0.5;
-  //       
+  //
   //       if (!isVisible) {
-  //         skillsSection.scrollIntoView({ 
-  //           behavior: "smooth", 
-  //           block: "start" 
+  //         skillsSection.scrollIntoView({
+  //           behavior: "smooth",
+  //           block: "start"
   //         });
   //       }
   //     }
@@ -146,13 +146,6 @@ const Skills = () => {
       description: "Semantic markup and styling",
     },
     {
-      name: "Git",
-      category: "tools",
-      icon: FaGitAlt,
-      color: "text-orange-600",
-      description: "Version control and collaboration",
-    },
-    {
       name: "REST APIs",
       category: "backend",
       icon: FaDatabase,
@@ -230,7 +223,6 @@ const Skills = () => {
       icon: FaDatabase,
       color: "text-green-400",
     },
-    { id: "tools", name: "Tools", icon: FaTools, color: "text-gray-400" },
   ];
 
   const expertiseAreas = [
