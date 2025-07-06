@@ -210,16 +210,16 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-12">
             {/* Enhanced Contact Information */}
-            <motion.div variants={itemVariants} className="space-y-8">
-              <div className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-8 border border-dark-blue-600/30">
-                <h3 className="text-2xl font-bold text-accent-blue-400 mb-6 flex items-center gap-3">
-                  <FaRocket className="text-accent-blue-500" />
+            <motion.div variants={itemVariants} className="space-y-6 lg:space-y-8">
+              <div className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-dark-blue-600/30">
+                <h3 className="text-xl sm:text-2xl font-bold text-accent-blue-400 mb-4 lg:mb-6 flex items-center gap-3">
+                  <FaRocket className="text-accent-blue-500 text-lg sm:text-xl" />
                   Get In Touch
                 </h3>
 
-                <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-6 lg:mb-8">
                   I'm always excited to discuss new opportunities, interesting
                   projects, or potential collaborations. Whether you have a
                   specific project in mind or just want to connect, I'd love to
@@ -227,7 +227,7 @@ const Contact = () => {
                 </p>
 
                 {/* Contact Info Cards */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {contactInfo.map((info, index) => (
                     <motion.a
                       key={info.label}
@@ -238,29 +238,31 @@ const Contact = () => {
                       }
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.02, x: 10 }}
-                      className="flex items-center space-x-4 p-4 bg-dark-blue-800/40 backdrop-blur-sm rounded-xl border border-dark-blue-600/20 hover:border-accent-blue-500/30 transition-all duration-300 group"
+                      className="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-dark-blue-800/40 backdrop-blur-sm rounded-xl border border-dark-blue-600/20 hover:border-accent-blue-500/30 transition-all duration-300 group"
                     >
                       <div
-                        className={`w-12 h-12 ${info.bgColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                        className={`w-10 h-10 sm:w-12 sm:h-12 ${info.bgColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                       >
-                        <info.icon className={`${info.color} text-xl`} />
+                        <info.icon className={`${info.color} text-lg sm:text-xl`} />
                       </div>
-                      <div>
-                        <p className="text-sm text-gray-400 font-medium">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs sm:text-sm text-gray-400 font-medium">
                           {info.label}
                         </p>
-                        <p className="text-white font-semibold">{info.value}</p>
+                        <p className="text-sm sm:text-base text-white font-semibold break-all">
+                          {info.value}
+                        </p>
                       </div>
                     </motion.a>
                   ))}
                 </div>
 
                 {/* Enhanced Social Links */}
-                <div className="mt-8 pt-6 border-t border-dark-blue-600/30">
-                  <p className="text-gray-400 mb-4 font-medium">
+                <div className="mt-6 lg:mt-8 pt-4 lg:pt-6 border-t border-dark-blue-600/30">
+                  <p className="text-gray-400 mb-3 sm:mb-4 font-medium text-sm sm:text-base">
                     Connect with me:
                   </p>
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3 sm:space-x-4">
                     {socialLinks.map((social, index) => (
                       <motion.a
                         key={social.label}
@@ -275,31 +277,29 @@ const Contact = () => {
                         }
                         transition={{ delay: 0.5 + index * 0.1 }}
                         whileHover={{ scale: 1.2, y: -5 }}
-                        className={`w-12 h-12 bg-dark-blue-800/40 backdrop-blur-sm rounded-xl border border-dark-blue-600/20 hover:border-accent-blue-500/30 flex items-center justify-center text-gray-400 ${social.color} transition-all duration-300`}
+                        className={`w-10 h-10 sm:w-12 sm:h-12 bg-dark-blue-800/40 backdrop-blur-sm rounded-xl border border-dark-blue-600/20 hover:border-accent-blue-500/30 flex items-center justify-center text-gray-400 ${social.color} transition-all duration-300`}
                         title={social.label}
                       >
-                        <social.icon size={20} />
+                        <social.icon size={18} className="sm:text-xl" />
                       </motion.a>
                     ))}
                   </div>
                 </div>
               </div>
-
-              {/* Availability Status */}
             </motion.div>
 
             {/* Enhanced Contact Form */}
             <motion.div
               variants={itemVariants}
-              className="bg-gradient-to-br from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-8 border border-dark-blue-600/30"
+              className="bg-gradient-to-br from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-dark-blue-600/30"
             >
-              <h3 className="text-2xl font-bold text-accent-blue-400 mb-6 flex items-center gap-3">
-                <FaPaperPlane className="text-accent-blue-500" />
+              <h3 className="text-xl sm:text-2xl font-bold text-accent-blue-400 mb-4 lg:mb-6 flex items-center gap-3">
+                <FaPaperPlane className="text-accent-blue-500 text-lg sm:text-xl" />
                 Send Message
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <div className="grid grid-cols-1 gap-4 sm:gap-6">
                   <div>
                     <label className="block text-gray-300 text-sm font-semibold mb-2">
                       Name *
@@ -310,7 +310,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent-blue-500 focus:ring-2 focus:ring-accent-blue-500/20 transition-all duration-300"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent-blue-500 focus:ring-2 focus:ring-accent-blue-500/20 transition-all duration-300 text-sm sm:text-base"
                       placeholder="Your name"
                     />
                   </div>
@@ -325,7 +325,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent-blue-500 focus:ring-2 focus:ring-accent-blue-500/20 transition-all duration-300"
+                      className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent-blue-500 focus:ring-2 focus:ring-accent-blue-500/20 transition-all duration-300 text-sm sm:text-base"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -340,8 +340,8 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
-                    className="w-full px-4 py-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent-blue-500 focus:ring-2 focus:ring-accent-blue-500/20 transition-all duration-300 resize-none"
+                    rows={4}
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-accent-blue-500 focus:ring-2 focus:ring-accent-blue-500/20 transition-all duration-300 resize-none text-sm sm:text-base"
                     placeholder="Tell me about your project ideas, requirements, or just say hello!"
                   />
                 </div>
@@ -351,18 +351,18 @@ const Contact = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 hover:from-accent-blue-400 hover:to-accent-blue-300 disabled:from-gray-600 disabled:to-gray-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-accent-blue-500/25 flex items-center justify-center gap-3 relative overflow-hidden group"
+                  className="w-full bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 hover:from-accent-blue-400 hover:to-accent-blue-300 disabled:from-gray-600 disabled:to-gray-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 shadow-xl hover:shadow-accent-blue-500/25 flex items-center justify-center gap-2 sm:gap-3 relative overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      Sending...
+                      <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <span className="text-sm sm:text-base">Sending...</span>
                     </>
                   ) : (
                     <>
-                      <FaPaperPlane className="text-lg" />
-                      Send Message
+                      <FaPaperPlane className="text-sm sm:text-lg" />
+                      <span className="text-sm sm:text-base">Send Message</span>
                     </>
                   )}
                 </motion.button>
@@ -371,30 +371,30 @@ const Contact = () => {
           </div>
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-sm rounded-2xl p-8 border border-green-500/20 mt-16"
+            className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-green-500/20 mt-12 lg:mt-16"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-4 h-4 bg-green-400 rounded-full animate-pulse" />
-              <h4 className="text-2xl font-bold text-green-400">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-400 rounded-full animate-pulse" />
+              <h4 className="text-xl sm:text-2xl font-bold text-green-400">
                 Available for Projects
               </h4>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
               <div>
-                <p className="text-gray-300 text-lg mb-6">
+                <p className="text-gray-300 text-base sm:text-lg mb-4 sm:mb-6">
                   Currently open to new opportunities and exciting
                   collaborations. Let's create something amazing together!
                 </p>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-start gap-3">
-                    <FaClock className="text-green-400 text-lg mt-1" />
+                    <FaClock className="text-green-400 text-base sm:text-lg mt-1 flex-shrink-0" />
                     <div>
-                      <h5 className="text-white font-semibold mb-1">
+                      <h5 className="text-white font-semibold mb-1 text-sm sm:text-base">
                         Quick Response
                       </h5>
-                      <p className="text-gray-300 text-sm">
+                      <p className="text-gray-300 text-xs sm:text-sm">
                         I typically respond within 24 hours and am ready to
                         start discussing your project immediately.
                       </p>
@@ -402,24 +402,24 @@ const Contact = () => {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <FaRocket className="text-green-400 text-lg mt-1" />
+                    <FaRocket className="text-green-400 text-base sm:text-lg mt-1 flex-shrink-0" />
                     <div>
-                      <h5 className="text-white font-semibold mb-1">
+                      <h5 className="text-white font-semibold mb-1 text-sm sm:text-base">
                         Start Availability
                       </h5>
-                      <p className="text-gray-300 text-sm">
+                      <p className="text-gray-300 text-xs sm:text-sm">
                         Available to start new projects immediately.
                       </p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <FaHeart className="text-green-400 text-lg mt-1" />
+                    <FaHeart className="text-green-400 text-base sm:text-lg mt-1 flex-shrink-0" />
                     <div>
-                      <h5 className="text-white font-semibold mb-1">
+                      <h5 className="text-white font-semibold mb-1 text-sm sm:text-base">
                         Project Types
                       </h5>
-                      <p className="text-gray-300 text-sm">
+                      <p className="text-gray-300 text-xs sm:text-sm">
                         Web applications, mobile apps, e-commerce sites, and
                         custom solutions using React & Next.js.
                       </p>
@@ -429,56 +429,56 @@ const Contact = () => {
               </div>
 
               <div>
-                <h5 className="text-white font-semibold mb-4">
+                <h5 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
                   What You Can Expect
                 </h5>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400 text-sm" />
-                    <span className="text-gray-300 text-sm">
+                <div className="space-y-2 sm:space-y-3">
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle className="text-green-400 text-xs sm:text-sm mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">
                       Clear communication throughout the project
                     </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400 text-sm" />
-                    <span className="text-gray-300 text-sm">
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle className="text-green-400 text-xs sm:text-sm mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">
                       Regular updates and progress reports
                     </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400 text-sm" />
-                    <span className="text-gray-300 text-sm">
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle className="text-green-400 text-xs sm:text-sm mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">
                       Clean, maintainable, and well-documented code
                     </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400 text-sm" />
-                    <span className="text-gray-300 text-sm">
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle className="text-green-400 text-xs sm:text-sm mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">
                       Responsive design and modern UI/UX
                     </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400 text-sm" />
-                    <span className="text-gray-300 text-sm">
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle className="text-green-400 text-xs sm:text-sm mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">
                       Post-launch support and maintenance
                     </span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <FaCheckCircle className="text-green-400 text-sm" />
-                    <span className="text-gray-300 text-sm">
+                  <div className="flex items-start gap-3">
+                    <FaCheckCircle className="text-green-400 text-xs sm:text-sm mt-1 flex-shrink-0" />
+                    <span className="text-gray-300 text-xs sm:text-sm">
                       Timely delivery and professional approach
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-dark-blue-800/30 backdrop-blur-sm rounded-xl border border-green-500/20">
+                <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-dark-blue-800/30 backdrop-blur-sm rounded-xl border border-green-500/20">
                   <div className="flex items-center gap-2 mb-2">
-                    <FaStar className="text-yellow-400 text-sm" />
-                    <span className="text-white font-semibold text-sm">
+                    <FaStar className="text-yellow-400 text-xs sm:text-sm" />
+                    <span className="text-white font-semibold text-xs sm:text-sm">
                       Current Status
                     </span>
                   </div>
-                  <p className="text-gray-300 text-sm">
+                  <p className="text-gray-300 text-xs sm:text-sm">
                     Accepting new projects • Best response time: Weekdays
                     9AM-6PM (GMT+2)
                   </p>
@@ -488,32 +488,32 @@ const Contact = () => {
           </motion.div>
 
           {/* Enhanced Call to Action */}
-          <motion.div variants={itemVariants} className="text-center mt-16">
-            <div className="bg-gradient-to-r from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-8 border border-dark-blue-600/30">
-              <FaHeart className="text-accent-blue-400 text-3xl mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-4">
+          <motion.div variants={itemVariants} className="text-center mt-12 lg:mt-16">
+            <div className="bg-gradient-to-r from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-dark-blue-600/30">
+              <FaHeart className="text-accent-blue-400 text-2xl sm:text-3xl mx-auto mb-3 sm:mb-4" />
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                 Ready to Start Your Project?
               </h3>
-              <p className="text-gray-300 text-lg mb-6 max-w-2xl mx-auto">
+              <p className="text-gray-300 text-base sm:text-lg mb-4 sm:mb-6 max-w-2xl mx-auto">
                 Let's turn your vision into reality. I'm here to help you create
                 something extraordinary that stands out in the digital world.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <motion.a
                   href="mailto:ahmed.abdallah5022@gmail.com"
                   whileHover={{ scale: 1.05 }}
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 hover:from-accent-blue-400 hover:to-accent-blue-300 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-accent-blue-500/25"
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 hover:from-accent-blue-400 hover:to-accent-blue-300 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 shadow-xl hover:shadow-accent-blue-500/25 justify-center"
                 >
-                  <FaEnvelope />
-                  Email Me
+                  <FaEnvelope className="text-sm sm:text-base" />
+                  <span className="text-sm sm:text-base">Email Me</span>
                 </motion.a>
                 <motion.a
                   href="tel:+201062535799"
                   whileHover={{ scale: 1.05 }}
-                  className="inline-flex items-center gap-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 hover:border-accent-blue-500/30 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300"
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-dark-blue-800/50 backdrop-blur-sm border border-dark-blue-600/50 hover:border-accent-blue-500/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 justify-center"
                 >
-                  <FaPhone />
-                  Call Me
+                  <FaPhone className="text-sm sm:text-base" />
+                  <span className="text-sm sm:text-base">Call Me</span>
                 </motion.a>
               </div>
             </div>
