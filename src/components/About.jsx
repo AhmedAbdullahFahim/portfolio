@@ -206,7 +206,7 @@ const About = () => {
               {/* Tab Navigation */}
               <motion.div
                 variants={itemVariants}
-                className="flex items-center bg-dark-blue-800/50 backdrop-blur-sm rounded-2xl p-2 mb-8 border border-dark-blue-600/30"
+                className="flex items-center bg-dark-blue-800/50 backdrop-blur-sm rounded-2xl p-2 mb-8 border border-dark-blue-600/30 space-x-1"
               >
                 {tabs.map((tab) => (
                   <button
