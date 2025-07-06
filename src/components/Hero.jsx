@@ -218,14 +218,15 @@ const Hero = () => {
         <motion.div variants={itemVariants} className="mb-8 relative">
           <motion.h1
             className="text-6xl md:text-8xl font-black mb-4 relative"
-                         style={{
-               background:
-                 "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
-               WebkitBackgroundClip: "text",
-               WebkitTextFillColor: "transparent",
-               backgroundClip: "text",
-               textShadow: "0 0 60px rgba(255, 255, 255, 0.8), 0 0 30px rgba(100, 116, 139, 0.3)",
-             }}
+            style={{
+              background:
+                "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              textShadow:
+                "0 0 60px rgba(255, 255, 255, 0.8), 0 0 30px rgba(100, 116, 139, 0.3)",
+            }}
           >
             Ahmed Fahim
           </motion.h1>
