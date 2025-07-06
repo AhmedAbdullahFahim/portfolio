@@ -153,7 +153,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="py-20 bg-dark-blue-800/50 relative overflow-hidden"
+      className="py-16 sm:py-20 bg-dark-blue-800/50 relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
@@ -162,7 +162,7 @@ const About = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-blue-300/3 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -170,17 +170,17 @@ const About = () => {
           animate={inView ? "visible" : "hidden"}
         >
           {/* Enhanced Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
+          <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
             <motion.div
               initial={{ scale: 0 }}
               animate={inView ? { scale: 1 } : { scale: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-16 h-16 bg-gradient-to-br from-accent-blue-500 to-accent-blue-400 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-accent-blue-500/25"
+              className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent-blue-500 to-accent-blue-400 rounded-2xl mx-auto mb-4 sm:mb-6 flex items-center justify-center shadow-lg shadow-blue-500/25"
             >
-              <FaUser className="text-white text-2xl" />
+              <FaUser className="text-white text-lg sm:text-2xl" />
             </motion.div>
             <h2
-              className="text-4xl md:text-6xl font-black mb-6"
+              className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6"
               style={{
                 background:
                   "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
@@ -192,25 +192,25 @@ const About = () => {
             >
               About Me
             </h2>
-            <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-gray-300 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed">
               Passionate developer crafting digital experiences with modern
               technologies
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-12 gap-8 mb-16">
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 mb-12 sm:mb-16">
             {/* Left Column - Main Content */}
             <div className="lg:col-span-8">
               {/* Tab Navigation */}
               <motion.div
                 variants={itemVariants}
-                className="flex items-center bg-dark-blue-800/50 backdrop-blur-sm rounded-2xl p-2 mb-8 border border-dark-blue-600/30 space-x-1"
+                className="flex items-center bg-dark-blue-800/50 backdrop-blur-sm rounded-2xl p-1.5 sm:p-2 mb-6 sm:mb-8 border border-dark-blue-600/30 space-x-1"
               >
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`relative flex-1 py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+                    className={`relative flex-1 py-2 sm:py-3 px-3 sm:px-6 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
                       activeTab === tab.id
                         ? "text-white bg-accent-blue-500 shadow-lg"
                         : "text-gray-400 hover:text-white hover:bg-dark-blue-700/50"
@@ -238,17 +238,17 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="min-h-[400px]"
+                className="min-h-[300px] sm:min-h-[400px]"
               >
                 {activeTab === "overview" && (
-                  <div className="space-y-8">
-                    <div className="bg-gradient-to-br from-dark-blue-700/30 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-8 border border-dark-blue-600/30">
-                      <h3 className="text-2xl md:text-3xl font-bold text-accent-blue-400 mb-6 flex items-center gap-3">
-                        <FaRocket className="text-accent-blue-500" />
+                  <div className="space-y-6 sm:space-y-8">
+                    <div className="bg-gradient-to-br from-dark-blue-700/30 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-dark-blue-600/30">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-accent-blue-400 mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                        <FaRocket className="text-accent-blue-500 text-lg sm:text-xl" />
                         Frontend Developer & Problem Solver
                       </h3>
 
-                      <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
+                      <div className="space-y-4 sm:space-y-6 text-gray-300 text-sm sm:text-base lg:text-lg leading-relaxed">
                         <p>
                           Hey there! I'm Ahmed, a passionate frontend developer
                           with over{" "}
@@ -285,26 +285,26 @@ const About = () => {
                     </div>
 
                     {/* Personal Information Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {personalInfo.map((info, index) => (
                         <motion.div
                           key={info.label}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.1 }}
-                          className="flex items-center space-x-4 p-6 bg-dark-blue-700/30 backdrop-blur-sm rounded-xl border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300"
+                          className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-dark-blue-700/30 backdrop-blur-sm rounded-xl border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300"
                         >
-                          <div className="w-12 h-12 bg-accent-blue-500/20 rounded-lg flex items-center justify-center">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
                             <info.icon
                               className="text-accent-blue-400"
-                              size={20}
+                              size={16}
                             />
                           </div>
-                          <div>
-                            <p className="text-sm text-gray-400 font-medium">
+                          <div className="min-w-0 flex-1">
+                            <p className="text-xs sm:text-sm text-gray-400 font-medium">
                               {info.label}
                             </p>
-                            <p className="text-white font-semibold text-lg">
+                            <p className="text-white font-semibold text-sm sm:text-base lg:text-lg">
                               {info.value}
                             </p>
                           </div>
@@ -315,25 +315,25 @@ const About = () => {
                 )}
 
                 {activeTab === "tech" && (
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {techStack.map((tech, index) => (
                         <motion.div
                           key={tech.name}
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: index * 0.1 }}
-                          className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300"
+                          className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300"
                         >
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-dark-blue-800/50 rounded-xl flex items-center justify-center">
-                              <tech.icon className={`${tech.color} text-2xl`} />
+                          <div className="flex items-center gap-3 sm:gap-4">
+                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-dark-blue-800/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                              <tech.icon className={`${tech.color} text-lg sm:text-2xl`} />
                             </div>
-                            <div>
-                              <h4 className="text-white font-bold text-lg">
+                            <div className="min-w-0 flex-1">
+                              <h4 className="text-white font-bold text-base sm:text-lg">
                                 {tech.name}
                               </h4>
-                              <p className="text-gray-400 text-sm">
+                              <p className="text-gray-400 text-xs sm:text-sm">
                                 Professional experience with this technology
                               </p>
                             </div>
@@ -345,7 +345,7 @@ const About = () => {
                 )}
 
                 {activeTab === "interests" && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {interests.map((interest, index) => (
                       <motion.div
                         key={interest.name}
@@ -353,15 +353,15 @@ const About = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
                         whileHover={{ scale: 1.05, y: -5 }}
-                        className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300 text-center group"
+                        className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300 text-center group"
                       >
-                        <div className="w-16 h-16 bg-accent-blue-500/20 rounded-2xl mx-auto mb-4 flex items-center justify-center group-hover:bg-accent-blue-500/30 transition-colors duration-300">
-                          <interest.icon className="text-accent-blue-400 text-2xl" />
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 bg-accent-blue-500/20 rounded-2xl mx-auto mb-3 sm:mb-4 flex items-center justify-center group-hover:bg-accent-blue-500/30 transition-colors duration-300">
+                          <interest.icon className="text-accent-blue-400 text-lg sm:text-2xl" />
                         </div>
-                        <h4 className="text-white font-bold text-lg mb-2">
+                        <h4 className="text-white font-bold text-base sm:text-lg mb-2">
                           {interest.name}
                         </h4>
-                        <p className="text-gray-400 text-sm">{interest.desc}</p>
+                        <p className="text-gray-400 text-xs sm:text-sm">{interest.desc}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -371,31 +371,31 @@ const About = () => {
 
             {/* Right Column - Achievements */}
             <div className="lg:col-span-4">
-              <motion.div variants={itemVariants} className="sticky top-24">
-                <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                  <FaTrophy className="text-accent-blue-500" />
+              <motion.div variants={itemVariants} className="lg:sticky lg:top-24">
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+                  <FaTrophy className="text-accent-blue-500 text-lg sm:text-xl" />
                   Key Highlights
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   {achievements.map((achievement, index) => (
                     <motion.div
                       key={achievement.label}
                       variants={cardVariants}
                       whileHover={{ scale: 1.02, x: 5 }}
-                      className="bg-gradient-to-br from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300"
+                      className="bg-gradient-to-br from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300"
                     >
-                      <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 bg-accent-blue-500/20 rounded-xl flex items-center justify-center">
-                          <achievement.icon className="text-accent-blue-400 text-xl" />
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 bg-accent-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <achievement.icon className="text-accent-blue-400 text-lg sm:text-xl" />
                         </div>
-                        <div>
-                          <h4 className="text-2xl font-bold text-accent-blue-400">
+                        <div className="min-w-0 flex-1">
+                          <h4 className="text-xl sm:text-2xl font-bold text-accent-blue-400">
                             {achievement.number}
                           </h4>
-                          <p className="text-white font-semibold">
+                          <p className="text-white font-semibold text-sm sm:text-base">
                             {achievement.label}
                           </p>
-                          <p className="text-gray-400 text-sm">
+                          <p className="text-gray-400 text-xs sm:text-sm">
                             {achievement.desc}
                           </p>
                         </div>
@@ -409,11 +409,11 @@ const About = () => {
 
           {/* Enhanced Call to Action */}
           <motion.div variants={itemVariants} className="text-center">
-            <div className="bg-gradient-to-r from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-8 border border-dark-blue-600/30">
-              <h3 className="text-2xl font-bold text-white mb-4">
+            <div className="bg-gradient-to-r from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-dark-blue-600/30">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                 Ready to Start Something Amazing?
               </h3>
-              <p className="text-gray-300 mb-6">
+              <p className="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base">
                 Let's collaborate and bring your ideas to life with cutting-edge
                 technology.
               </p>
@@ -424,7 +424,7 @@ const About = () => {
                   boxShadow: "0 20px 40px rgba(100, 116, 139, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 hover:from-accent-blue-400 hover:to-accent-blue-300 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-accent-blue-500 to-accent-blue-400 hover:from-accent-blue-400 hover:to-accent-blue-300 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg transition-all duration-300 shadow-xl"
                 onClick={(e) => {
                   e.preventDefault();
                   document
@@ -432,8 +432,8 @@ const About = () => {
                     .scrollIntoView({ behavior: "smooth" });
                 }}
               >
-                <FaRocket className="animate-bounce" />
-                Let's Work Together
+                <FaRocket className="animate-bounce text-sm sm:text-base" />
+                <span className="text-sm sm:text-base">Let's Work Together</span>
               </motion.a>
             </div>
           </motion.div>
