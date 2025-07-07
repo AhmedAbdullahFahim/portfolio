@@ -18,7 +18,7 @@ import { useMobile } from "../hooks/useMobile";
 
 const Projects = () => {
   const { isMobile } = useMobile();
-  
+
   const [ref, inView] = useInView({
     threshold: isMobile ? 0.1 : 0.2,
     triggerOnce: true,
@@ -54,7 +54,7 @@ const Projects = () => {
       id: 1,
       title: "Glancers Platform",
       description:
-        "A comprehensive application structure for two different types of users, maintaining routed routes for each type with responsive design and Arabic language support.",
+        "A comprehensive application structure for two different types of users, maintaining protected routes for each type with responsive design and Arabic language support.",
       category: "web",
       technologies: [
         "JavaScript",
@@ -87,7 +87,13 @@ const Projects = () => {
       description:
         "Built using TypeScript, React, and Zustand for React Query. Features admin features enabling admins to manage user types: operators and administrators.",
       category: "web",
-      technologies: ["TypeScript", "React", "Zustand", "React Query", "Radix UI"],
+      technologies: [
+        "TypeScript",
+        "React",
+        "Zustand",
+        "React Query",
+        "Radix UI",
+      ],
       features: [
         "Implemented functionality for operators to manually control or schedule tasks on assigned servers",
         "Developed comprehensive admin features including user management, access control, log monitoring",
@@ -313,9 +319,16 @@ const Projects = () => {
             <motion.div
               initial={isMobile ? { scale: 1 } : { scale: 0, rotate: -180 }} // No animation on mobile
               animate={
-                inView ? { scale: 1, rotate: 0 } : (isMobile ? { scale: 1 } : { scale: 0, rotate: -180 })
+                inView
+                  ? { scale: 1, rotate: 0 }
+                  : isMobile
+                  ? { scale: 1 }
+                  : { scale: 0, rotate: -180 }
               }
-              transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }} // No animation on mobile
+              transition={{
+                duration: isMobile ? 0 : 0.8,
+                delay: isMobile ? 0 : 0.2,
+              }} // No animation on mobile
               className="w-16 h-16 bg-gradient-to-br from-accent-blue-500 to-accent-blue-400 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-accent-blue-500/25"
             >
               <FaRocket className="text-white text-2xl" />
@@ -426,7 +439,7 @@ const Projects = () => {
                     {project.title}
                   </h3>
 
-                  <p className="text-gray-300 leading-relaxed mb-6 line-clamp-3">
+                  <p className="text-gray-300 leading-relaxed mb-6">
                     {project.description}
                   </p>
 
@@ -496,22 +509,22 @@ const Projects = () => {
                 <p className="text-gray-300 mb-6 max-w-md mx-auto">
                   Let's discuss how I can help bring your next project to life
                 </p>
-                                 <motion.button
-                   whileHover={{ scale: 1.05 }}
-                   whileTap={{ scale: 0.95 }}
-                   onClick={() => {
-                     const contactSection = document.getElementById('contact');
-                     if (contactSection) {
-                       contactSection.scrollIntoView({
-                         behavior: 'smooth',
-                         block: 'start'
-                       });
-                     }
-                   }}
-                   className="bg-gradient-to-r from-accent-blue-500 to-cyan-500 hover:from-accent-blue-400 hover:to-cyan-400 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-accent-blue-500/25 cursor-pointer"
-                 >
-                   Get In Touch
-                 </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => {
+                    const contactSection = document.getElementById("contact");
+                    if (contactSection) {
+                      contactSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }
+                  }}
+                  className="bg-gradient-to-r from-accent-blue-500 to-cyan-500 hover:from-accent-blue-400 hover:to-cyan-400 text-white font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-accent-blue-500/25 cursor-pointer"
+                >
+                  Get In Touch
+                </motion.button>
               </div>
             </div>
           </motion.div>
