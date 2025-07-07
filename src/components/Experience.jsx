@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import {
@@ -7,15 +7,21 @@ import {
   FaMapMarkerAlt,
   FaGraduationCap,
   FaCode,
+  FaReact,
   FaMobile,
+  FaTools,
+  FaLaptopCode,
+  FaCertificate,
+  FaMedal,
   FaRocket,
   FaStar,
-  FaAward,
-  FaUsers,
-  FaChartLine,
+  FaBuilding,
+  FaUniversity,
 } from "react-icons/fa";
+import { useMobile } from "../hooks/useMobile";
 
 const Experience = () => {
+  const { isMobile } = useMobile();
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -124,25 +130,19 @@ const Experience = () => {
 
   const stats = [
     {
-      icon: FaChartLine,
-      label: "Years Experience",
-      value: "2+",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
       icon: FaRocket,
       label: "Projects Delivered",
       value: "15+",
       color: "from-purple-500 to-pink-500",
     },
     {
-      icon: FaUsers,
+      icon: FaUniversity,
       label: "Team Collaborations",
       value: "3",
       color: "from-green-500 to-teal-500",
     },
     {
-      icon: FaAward,
+      icon: FaMedal,
       label: "Technologies Mastered",
       value: "12+",
       color: "from-orange-500 to-red-500",
@@ -156,42 +156,46 @@ const Experience = () => {
     >
       {/* Floating Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -top-32 -left-32 w-64 h-64 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: -360,
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -bottom-32 -right-32 w-80 h-80 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            y: [-20, 20, -20],
-            x: [-10, 10, -10],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/4 w-48 h-48 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-full blur-2xl"
-        />
+        {isMobile ? null : (
+          <>
+            <motion.div
+              animate={{
+                rotate: 360,
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute -top-32 -left-32 w-64 h-64 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{
+                rotate: -360,
+                scale: [1.1, 1, 1.1],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute -bottom-32 -right-32 w-80 h-80 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{
+                y: [-20, 20, -20],
+                x: [-10, 10, -10],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute top-1/2 left-1/4 w-48 h-48 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-full blur-2xl"
+            />
+          </>
+        )}
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -214,7 +218,7 @@ const Experience = () => {
               <FaBriefcase className="text-white text-lg sm:text-2xl" />
             </motion.div>
             <h2
-              className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6"
+              className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6 leading-tight"
               style={{
                 background:
                   "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
@@ -222,6 +226,7 @@ const Experience = () => {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
+                lineHeight: "1.3",
               }}
             >
               Experience & Education

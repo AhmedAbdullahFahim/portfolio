@@ -14,9 +14,14 @@ import {
   FaCheckCircle,
   FaStar,
   FaHeart,
+  FaMobile,
+  FaDesktop,
 } from "react-icons/fa";
+import { useMobile } from "../hooks/useMobile";
 
 const Contact = () => {
+  const { isMobile } = useMobile();
+
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -141,38 +146,40 @@ const Contact = () => {
       id="contact"
       className="py-20 bg-dark-blue-800/50 relative overflow-hidden"
     >
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-accent-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-blue-400/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-blue-300/3 rounded-full blur-3xl" />
+      {/* Enhanced Background Elements - Disabled on mobile for performance */}
+      {!isMobile && (
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-accent-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-blue-400/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent-blue-300/3 rounded-full blur-3xl" />
 
-        {/* Floating Shapes */}
-        <motion.div
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 5, 0],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-32 right-32 w-4 h-4 bg-accent-blue-400/20 rounded-full"
-        />
-        <motion.div
-          animate={{
-            y: [0, 20, 0],
-            rotate: [0, -5, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-32 left-32 w-6 h-6 bg-accent-blue-500/20 rounded-full"
-        />
-      </div>
+          {/* Floating Shapes */}
+          <motion.div
+            animate={{
+              y: [0, -20, 0],
+              rotate: [0, 5, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-32 right-32 w-4 h-4 bg-accent-blue-400/20 rounded-full"
+          />
+          <motion.div
+            animate={{
+              y: [0, 20, 0],
+              rotate: [0, -5, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute bottom-32 left-32 w-6 h-6 bg-accent-blue-500/20 rounded-full"
+          />
+        </div>
+      )}
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -192,7 +199,7 @@ const Contact = () => {
               <FaComments className="text-white text-2xl" />
             </motion.div>
             <h2
-              className="text-4xl md:text-6xl font-black mb-6"
+              className="text-4xl md:text-6xl font-black mb-6 leading-tight"
               style={{
                 background:
                   "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
@@ -200,6 +207,7 @@ const Contact = () => {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
+                lineHeight: "1.3",
               }}
             >
               Let's Work Together

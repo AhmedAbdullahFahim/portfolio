@@ -18,6 +18,11 @@ import {
   FaGamepad,
   FaTableTennis,
   FaTree,
+  FaCss3Alt,
+  FaCertificate,
+  FaAward,
+  FaProjectDiagram,
+  FaUsers,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -25,8 +30,11 @@ import {
   SiTailwindcss,
   SiExpo,
 } from "react-icons/si";
+import { useMobile } from "../hooks/useMobile";
 
 const About = () => {
+  const { isMobile } = useMobile();
+
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -156,11 +164,13 @@ const About = () => {
       className="py-16 sm:py-20 bg-dark-blue-800/50 relative overflow-hidden"
     >
       {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-accent-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-blue-400/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-blue-300/3 rounded-full blur-3xl" />
-      </div>
+      {!isMobile && (
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-10 w-64 h-64 bg-accent-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-blue-400/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-blue-300/3 rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
@@ -180,7 +190,7 @@ const About = () => {
               <FaUser className="text-white text-lg sm:text-2xl" />
             </motion.div>
             <h2
-              className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6"
+              className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6 leading-tight"
               style={{
                 background:
                   "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
@@ -188,6 +198,7 @@ const About = () => {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
+                lineHeight: "1.3",
               }}
             >
               About Me

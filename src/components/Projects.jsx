@@ -14,10 +14,13 @@ import {
   FaChartLine,
   FaServer,
 } from "react-icons/fa";
+import { useMobile } from "../hooks/useMobile";
 
 const Projects = () => {
+  const { isMobile } = useMobile();
+  
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: isMobile ? 0.1 : 0.2,
     triggerOnce: true,
   });
 
@@ -28,19 +31,19 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        duration: 0.8,
+        staggerChildren: isMobile ? 0.08 : 0.15,
+        duration: isMobile ? 0.5 : 0.8,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: isMobile ? 15 : 30 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: isMobile ? 0.4 : 0.6,
         ease: "easeOut",
       },
     },
@@ -256,45 +259,47 @@ const Projects = () => {
       id="projects"
       className="relative py-24 bg-dark-blue-900/50 overflow-hidden"
     >
-      {/* Floating Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: -360,
-            scale: [1.1, 1, 1.1],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            y: [-30, 30, -30],
-            x: [-20, 20, -20],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/3 right-1/4 w-60 h-60 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-full blur-2xl"
-        />
-      </div>
+      {/* Floating Background Elements - Disabled on mobile for performance */}
+      {!isMobile && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            animate={{
+              rotate: 360,
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              rotate: -360,
+              scale: [1.1, 1, 1.1],
+            }}
+            transition={{
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-teal-500/10 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              y: [-30, 30, -30],
+              x: [-20, 20, -20],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-1/3 right-1/4 w-60 h-60 bg-gradient-to-r from-green-500/5 to-blue-500/5 rounded-full blur-2xl"
+          />
+        </div>
+      )}
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -306,17 +311,17 @@ const Projects = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-20">
             <motion.div
-              initial={{ scale: 0, rotate: -180 }}
+              initial={{ scale: 0, rotate: isMobile ? 0 : -180 }} // No rotation on mobile
               animate={
-                inView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }
+                inView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: isMobile ? 0 : -180 }
               }
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.1 : 0.2 }} // Faster on mobile
               className="w-16 h-16 bg-gradient-to-br from-accent-blue-500 to-accent-blue-400 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-accent-blue-500/25"
             >
               <FaRocket className="text-white text-2xl" />
             </motion.div>
             <h2
-              className="text-4xl md:text-6xl font-black mb-6"
+              className="text-4xl md:text-6xl font-black mb-6 leading-tight" // Increased line height
               style={{
                 background:
                   "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
@@ -324,6 +329,7 @@ const Projects = () => {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
+                lineHeight: "1.3", // Explicit line height increase
               }}
             >
               Featured Projects
@@ -343,8 +349,8 @@ const Projects = () => {
               <motion.button
                 key={category.id}
                 onClick={() => setFilter(category.id)}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={isMobile ? {} : { scale: 1.05, y: -2 }} // Disable hover animations on mobile
+                whileTap={isMobile ? {} : { scale: 0.95 }} // Disable tap animations on mobile
                 className={`group relative px-6 py-3 rounded-2xl font-medium transition-all duration-300 flex items-center gap-3 ${
                   filter === category.id
                     ? "bg-white/10 backdrop-blur-sm border border-white/20 text-white shadow-lg"
@@ -384,7 +390,7 @@ const Projects = () => {
                 key={project.id}
                 layout
                 variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={isMobile ? {} : { y: -10, scale: 1.02 }} // Disable hover animations on mobile
                 className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-all duration-500"
               >
                 {/* Gradient Overlay */}

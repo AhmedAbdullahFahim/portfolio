@@ -28,10 +28,13 @@ import {
   SiVercel,
 } from "react-icons/si";
 import { useInView } from "react-intersection-observer";
+import { useMobile } from "../hooks/useMobile";
 
 const Skills = () => {
+  const { isMobile } = useMobile();
+  
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: isMobile ? 0.1 : 0.2, // Lower threshold for mobile
     triggerOnce: true,
   });
 
@@ -57,25 +60,26 @@ const Skills = () => {
   //   return () => clearTimeout(timer);
   // }, [activeCategory]);
 
+  // Mobile-optimized animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        duration: 1.2,
+        staggerChildren: isMobile ? 0.05 : 0.1, // Faster stagger on mobile
+        duration: isMobile ? 0.6 : 1.2, // Shorter duration on mobile
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    hidden: { opacity: 0, y: isMobile ? 20 : 40, scale: isMobile ? 1 : 0.9 }, // Less movement and no scale on mobile
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.8,
+        duration: isMobile ? 0.4 : 0.8, // Faster animation on mobile
         ease: "easeOut",
       },
     },
@@ -267,12 +271,14 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-accent-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent-blue-400/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-accent-blue-300/3 rounded-full blur-3xl" />
-      </div>
+      {/* Background Elements - Reduced on mobile for performance */}
+      {!isMobile && (
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-20 w-72 h-72 bg-accent-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-20 w-80 h-80 bg-accent-blue-400/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-accent-blue-300/3 rounded-full blur-3xl" />
+        </div>
+      )}
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -284,17 +290,17 @@ const Skills = () => {
           {/* Enhanced Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <motion.div
-              initial={{ scale: 0, rotate: -180 }}
+              initial={{ scale: 0, rotate: isMobile ? 0 : -180 }} // No rotation on mobile
               animate={
-                inView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }
+                inView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: isMobile ? 0 : -180 }
               }
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.1 : 0.2 }} // Faster on mobile
               className="w-16 h-16 bg-gradient-to-br from-accent-blue-500 to-accent-blue-400 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-accent-blue-500/25"
             >
               <FaRocket className="text-white text-2xl" />
             </motion.div>
             <h2
-              className="text-4xl md:text-6xl font-black mb-6"
+              className="text-4xl md:text-6xl font-black mb-6 leading-tight" // Increased line height
               style={{
                 background:
                   "linear-gradient(135deg, #ffffff 0%, #f8fafc 30%, #e2e8f0 70%, #cbd5e1 100%)",
@@ -302,6 +308,7 @@ const Skills = () => {
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
                 textShadow: "0 0 30px rgba(255, 255, 255, 0.5)",
+                lineHeight: "1.3", // Explicit line height increase
               }}
             >
               Technical Skills
@@ -320,7 +327,7 @@ const Skills = () => {
               <motion.div
                 key={area.title}
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -10 }}
+                whileHover={isMobile ? {} : { scale: 1.05, y: -10 }} // Disable hover animations on mobile
                 className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/50 transition-all duration-300 group text-center"
               >
                 <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-accent-blue-500/20 to-accent-blue-400/10 rounded-2xl flex items-center justify-center group-hover:from-accent-blue-500/30 group-hover:to-accent-blue-400/20 transition-all duration-300">
@@ -352,8 +359,8 @@ const Skills = () => {
             {categories.map((category) => (
               <motion.button
                 key={category.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={isMobile ? {} : { scale: 1.05 }} // Disable hover animations on mobile
+                whileTap={isMobile ? {} : { scale: 0.95 }} // Disable tap animations on mobile
                 onClick={() => setActiveCategory(category.id)}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full font-medium transition-all duration-300 ${
                   activeCategory === category.id
@@ -384,14 +391,14 @@ const Skills = () => {
             {filteredSkills.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                initial={{ opacity: 0, y: isMobile ? 15 : 30, scale: isMobile ? 1 : 0.9 }} // Less movement on mobile
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
-                  duration: 0.2,
-                  delay: index * 0.1,
+                  duration: isMobile ? 0.3 : 0.5, // Faster on mobile
+                  delay: index * (isMobile ? 0.05 : 0.1), // Faster stagger on mobile
                   ease: "easeOut",
                 }}
-                whileHover={{ scale: 1.03, y: -5 }}
+                whileHover={isMobile ? {} : { scale: 1.03, y: -5 }} // Disable hover animations on mobile
                 className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-6 border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300 group"
               >
                 <div className="flex items-center gap-4">
@@ -443,8 +450,8 @@ const Skills = () => {
                   animate={
                     inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
                   }
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1, y: -5 }}
+                  transition={{ duration: isMobile ? 0.3 : 0.6, delay: index * (isMobile ? 0.05 : 0.1) }} // Faster on mobile
+                  whileHover={isMobile ? {} : { scale: 1.1, y: -5 }} // Disable hover animations on mobile
                   className="flex flex-col items-center p-4 bg-dark-blue-800/30 rounded-xl border border-dark-blue-600/30 hover:border-accent-blue-500/30 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 mb-3 bg-dark-blue-800/50 rounded-lg flex items-center justify-center group-hover:bg-accent-blue-500/20 transition-colors duration-300">

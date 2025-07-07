@@ -11,12 +11,15 @@ import {
   FaRocket,
   FaStar,
 } from "react-icons/fa";
+import { useMobile } from "../hooks/useMobile";
 
 const Hero = () => {
   const [ref, inView] = useInView({
     threshold: 0.3,
     triggerOnce: true,
   });
+
+  const { isMobile } = useMobile();
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
@@ -384,35 +387,37 @@ const Hero = () => {
         </motion.div>
 
         {/* Enhanced Scroll Indicator */}
-        <motion.div
-          variants={itemVariants}
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-        >
+        {!isMobile && (
           <motion.div
-            variants={floatVariants}
-            animate="animate"
-            className="flex flex-col items-center cursor-pointer group"
-            onClick={() =>
-              document
-                .querySelector("#about")
-                .scrollIntoView({ behavior: "smooth" })
-            }
+            variants={itemVariants}
+            className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
           >
-            <span className="text-accent-blue-400 text-sm font-medium mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
-              Scroll to explore
-            </span>
             <motion.div
-              className="w-6 h-10 border-2 border-accent-blue-400 rounded-full flex justify-center"
-              whileHover={{ scale: 1.1 }}
+              variants={floatVariants}
+              animate="animate"
+              className="flex flex-col items-center cursor-pointer group"
+              onClick={() =>
+                document
+                  .querySelector("#about")
+                  .scrollIntoView({ behavior: "smooth" })
+              }
             >
+              <span className="text-accent-blue-400 text-sm font-medium mb-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                Scroll to explore
+              </span>
               <motion.div
-                className="w-1 h-3 bg-accent-blue-400 rounded-full mt-2"
-                animate={{ y: [0, 12, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
+                className="w-6 h-10 border-2 border-accent-blue-400 rounded-full flex justify-center"
+                whileHover={{ scale: 1.1 }}
+              >
+                <motion.div
+                  className="w-1 h-3 bg-accent-blue-400 rounded-full mt-2"
+                  animate={{ y: [0, 12, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
+        )}
       </motion.div>
     </section>
   );
