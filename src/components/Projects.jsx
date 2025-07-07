@@ -27,23 +27,23 @@ const Projects = () => {
   const [filter, setFilter] = useState("all");
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isMobile ? 1 : 0 }, // No opacity animation on mobile
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: isMobile ? 0.08 : 0.15,
-        duration: isMobile ? 0.5 : 0.8,
+        staggerChildren: isMobile ? 0 : 0.15, // No stagger on mobile
+        duration: isMobile ? 0 : 0.8, // No duration on mobile
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: isMobile ? 15 : 30 },
+    hidden: { opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }, // No movement on mobile
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: isMobile ? 0.4 : 0.6,
+        duration: isMobile ? 0 : 0.6, // No animation on mobile
         ease: "easeOut",
       },
     },
@@ -311,11 +311,11 @@ const Projects = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-20">
             <motion.div
-              initial={{ scale: 0, rotate: isMobile ? 0 : -180 }} // No rotation on mobile
+              initial={isMobile ? { scale: 1 } : { scale: 0, rotate: -180 }} // No animation on mobile
               animate={
-                inView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: isMobile ? 0 : -180 }
+                inView ? { scale: 1, rotate: 0 } : (isMobile ? { scale: 1 } : { scale: 0, rotate: -180 })
               }
-              transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.1 : 0.2 }} // Faster on mobile
+              transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }} // No animation on mobile
               className="w-16 h-16 bg-gradient-to-br from-accent-blue-500 to-accent-blue-400 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-accent-blue-500/25"
             >
               <FaRocket className="text-white text-2xl" />

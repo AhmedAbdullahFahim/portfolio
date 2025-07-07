@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { HiMenu, HiX, HiCode } from 'react-icons/hi'
+import { useMobile } from '../hooks/useMobile'
 
 const Header = () => {
+  const { isMobile } = useMobile()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
@@ -47,9 +49,9 @@ const Header = () => {
 
   return (
     <motion.header
-      initial={{ y: -100, opacity: 0 }}
+      initial={isMobile ? { opacity: 1 } : { y: -100, opacity: 0 }} // Skip initial animation on mobile
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: isMobile ? 0 : 0.8, ease: "easeOut" }} // No animation duration on mobile
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
           ? 'bg-dark-blue-900/80 backdrop-blur-xl border-b border-dark-blue-700/50 shadow-lg shadow-dark-blue-900/50' 
@@ -60,14 +62,14 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Enhanced Logo */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={isMobile ? {} : { scale: 1.05 }} // Disable hover on mobile
+            whileTap={isMobile ? {} : { scale: 0.95 }} // Disable tap animation on mobile
             className="flex items-center gap-3 cursor-pointer group"
             onClick={() => scrollToSection('#home')}
           >
             <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              animate={isMobile ? {} : { rotate: [0, 360] }} // Disable rotation on mobile
+              transition={isMobile ? {} : { duration: 20, repeat: Infinity, ease: "linear" }}
               className="w-10 h-10 bg-gradient-to-br from-accent-blue-400 to-accent-blue-300 rounded-lg flex items-center justify-center shadow-lg"
             >
               <HiCode className="text-dark-blue-900 text-lg" />
@@ -114,33 +116,38 @@ const Header = () => {
           {/* Enhanced Mobile Menu Button */}
           <div className="lg:hidden">
             <motion.button
-              whileTap={{ scale: 0.9 }}
+              whileTap={isMobile ? {} : { scale: 0.9 }} // Disable tap animation on mobile
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="relative w-10 h-10 bg-dark-blue-800/50 backdrop-blur-md rounded-lg border border-dark-blue-600/30 flex items-center justify-center text-gray-300 hover:text-accent-blue-400 hover:bg-dark-blue-700/50 transition-all duration-300"
             >
-              <AnimatePresence mode="wait">
-                {isMenuOpen ? (
-                  <motion.div
-                    key="close"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <HiX size={20} />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="menu"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <HiMenu size={20} />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {isMobile ? (
+                // Simple icon toggle without animation on mobile
+                isMenuOpen ? <HiX size={20} /> : <HiMenu size={20} />
+              ) : (
+                <AnimatePresence mode="wait">
+                  {isMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <HiX size={20} />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <HiMenu size={20} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
             </motion.button>
           </div>
         </div>
@@ -149,10 +156,10 @@ const Header = () => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0, y: -20 }}
+              initial={isMobile ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0, y: -20 }} // Skip animation on mobile
               animate={{ opacity: 1, height: 'auto', y: 0 }}
-              exit={{ opacity: 0, height: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              exit={isMobile ? { opacity: 0 } : { opacity: 0, height: 0, y: -20 }} // Simple exit on mobile
+              transition={{ duration: isMobile ? 0.1 : 0.3, ease: "easeOut" }} // Faster on mobile
               className="lg:hidden mt-6 overflow-hidden"
             >
               <div className="bg-dark-blue-800/50 backdrop-blur-md rounded-2xl border border-dark-blue-600/30 p-6 shadow-xl">
@@ -160,11 +167,11 @@ const Header = () => {
                   {navItems.map((item, index) => (
                     <motion.button
                       key={item.name}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={isMobile ? { opacity: 1 } : { opacity: 0, x: -20 }} // Skip initial animation on mobile
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      whileHover={{ scale: 1.02, x: 4 }}
-                      whileTap={{ scale: 0.98 }}
+                      transition={isMobile ? {} : { duration: 0.3, delay: index * 0.1 }} // No delay on mobile
+                      whileHover={isMobile ? {} : { scale: 1.02, x: 4 }} // Disable hover on mobile
+                      whileTap={isMobile ? {} : { scale: 0.98 }} // Disable tap animation on mobile
                       onClick={() => scrollToSection(item.href)}
                       className={`relative text-left px-4 py-3 rounded-xl font-medium transition-all duration-300 ${
                         activeSection === item.id
@@ -184,17 +191,17 @@ const Header = () => {
                 
                 {/* Mobile Contact Info */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 20 }} // Skip animation on mobile
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.6 }}
+                  transition={isMobile ? {} : { duration: 0.4, delay: 0.6 }} // No animation on mobile
                   className="mt-6 pt-6 border-t border-dark-blue-600/30"
                 >
                   <p className="text-sm text-gray-400 text-center">
                     Ready to build something amazing?
                   </p>
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={isMobile ? {} : { scale: 1.02 }} // Disable hover on mobile
+                    whileTap={isMobile ? {} : { scale: 0.98 }} // Disable tap animation on mobile
                     onClick={() => scrollToSection('#contact')}
                     className="w-full mt-3 bg-accent-blue-500 hover:bg-accent-blue-400 text-white px-4 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-accent-blue-500/25"
                   >

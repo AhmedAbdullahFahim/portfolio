@@ -42,37 +42,37 @@ const About = () => {
 
   const [activeTab, setActiveTab] = useState("overview");
 
+  // Mobile-optimized animation variants - minimal on mobile
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isMobile ? 1 : 0 }, // No opacity animation on mobile
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        duration: 1,
+        staggerChildren: isMobile ? 0 : 0.1, // No stagger on mobile
+        duration: isMobile ? 0 : 0.8, // No duration on mobile
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    hidden: { opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }, // No movement on mobile
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.8,
+        duration: isMobile ? 0 : 0.6, // No animation on mobile
         ease: "easeOut",
       },
     },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, rotateY: -15 },
+    hidden: { opacity: isMobile ? 1 : 0, scale: 1 }, // No scale animation on mobile
     visible: {
       opacity: 1,
-      rotateY: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
+        duration: isMobile ? 0 : 0.6, // No animation on mobile
         ease: "easeOut",
       },
     },

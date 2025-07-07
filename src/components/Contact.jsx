@@ -23,7 +23,7 @@ const Contact = () => {
   const { isMobile } = useMobile();
 
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: isMobile ? 0.1 : 0.2,
     triggerOnce: true,
   });
 
@@ -36,24 +36,23 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isMobile ? 1 : 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        duration: 1,
+        staggerChildren: isMobile ? 0 : 0.15,
+        duration: isMobile ? 0 : 1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    hidden: { opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 40 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.8,
+        duration: isMobile ? 0 : 0.8,
         ease: "easeOut",
       },
     },
@@ -220,7 +219,10 @@ const Contact = () => {
 
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-12">
             {/* Enhanced Contact Information */}
-            <motion.div variants={itemVariants} className="space-y-6 lg:space-y-8">
+            <motion.div
+              variants={itemVariants}
+              className="space-y-6 lg:space-y-8"
+            >
               <div className="bg-gradient-to-br from-dark-blue-700/40 to-dark-blue-600/20 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-dark-blue-600/30">
                 <h3 className="text-xl sm:text-2xl font-bold text-accent-blue-400 mb-4 lg:mb-6 flex items-center gap-3">
                   <FaRocket className="text-accent-blue-500 text-lg sm:text-xl" />
@@ -251,7 +253,9 @@ const Contact = () => {
                       <div
                         className={`w-10 h-10 sm:w-12 sm:h-12 ${info.bgColor} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
                       >
-                        <info.icon className={`${info.color} text-lg sm:text-xl`} />
+                        <info.icon
+                          className={`${info.color} text-lg sm:text-xl`}
+                        />
                       </div>
                       <div className="min-w-0 flex-1">
                         <p className="text-xs sm:text-sm text-gray-400 font-medium">
@@ -379,7 +383,7 @@ const Contact = () => {
           </div>
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-green-500/20 mt-12 lg:mt-16"
+            className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-green-500/20 mt-10"
           >
             <div className="flex items-center gap-3 mb-4 sm:mb-6">
               <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-400 rounded-full animate-pulse" />
@@ -496,7 +500,10 @@ const Contact = () => {
           </motion.div>
 
           {/* Enhanced Call to Action */}
-          <motion.div variants={itemVariants} className="text-center mt-12 lg:mt-16">
+          <motion.div
+            variants={itemVariants}
+            className="text-center mt-10"
+          >
             <div className="bg-gradient-to-r from-dark-blue-700/50 to-dark-blue-600/30 backdrop-blur-sm rounded-2xl p-4 sm:p-6 lg:p-8 border border-dark-blue-600/30">
               <FaHeart className="text-accent-blue-400 text-2xl sm:text-3xl mx-auto mb-3 sm:mb-4" />
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">

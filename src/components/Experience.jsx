@@ -23,28 +23,28 @@ import { useMobile } from "../hooks/useMobile";
 const Experience = () => {
   const { isMobile } = useMobile();
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: isMobile ? 0.1 : 0.2,
     triggerOnce: true,
   });
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isMobile ? 1 : 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        duration: 0.8,
+        staggerChildren: isMobile ? 0 : 0.15,
+        duration: isMobile ? 0 : 1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 50 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: isMobile ? 0 : 0.8,
         ease: "easeOut",
       },
     },

@@ -60,26 +60,26 @@ const Skills = () => {
   //   return () => clearTimeout(timer);
   // }, [activeCategory]);
 
-  // Mobile-optimized animation variants
+  // Mobile-optimized animation variants - minimal on mobile
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isMobile ? 1 : 0 }, // No opacity animation on mobile
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: isMobile ? 0.05 : 0.1, // Faster stagger on mobile
-        duration: isMobile ? 0.6 : 1.2, // Shorter duration on mobile
+        staggerChildren: isMobile ? 0 : 0.1, // No stagger on mobile
+        duration: isMobile ? 0 : 1.2, // No duration on mobile
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: isMobile ? 20 : 40, scale: isMobile ? 1 : 0.9 }, // Less movement and no scale on mobile
+    hidden: { opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 40, scale: 1 }, // No movement on mobile
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: isMobile ? 0.4 : 0.8, // Faster animation on mobile
+        duration: isMobile ? 0 : 0.8, // No animation on mobile
         ease: "easeOut",
       },
     },
@@ -290,11 +290,11 @@ const Skills = () => {
           {/* Enhanced Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <motion.div
-              initial={{ scale: 0, rotate: isMobile ? 0 : -180 }} // No rotation on mobile
+              initial={isMobile ? { scale: 1 } : { scale: 0, rotate: -180 }} // No animation on mobile
               animate={
-                inView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: isMobile ? 0 : -180 }
+                inView ? { scale: 1, rotate: 0 } : (isMobile ? { scale: 1 } : { scale: 0, rotate: -180 })
               }
-              transition={{ duration: isMobile ? 0.4 : 0.8, delay: isMobile ? 0.1 : 0.2 }} // Faster on mobile
+              transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }} // No animation on mobile
               className="w-16 h-16 bg-gradient-to-br from-accent-blue-500 to-accent-blue-400 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg shadow-accent-blue-500/25"
             >
               <FaRocket className="text-white text-2xl" />
@@ -391,11 +391,11 @@ const Skills = () => {
             {filteredSkills.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                initial={{ opacity: 0, y: isMobile ? 15 : 30, scale: isMobile ? 1 : 0.9 }} // Less movement on mobile
+                initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 30, scale: 0.9 }} // No animation on mobile
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
-                  duration: isMobile ? 0.3 : 0.5, // Faster on mobile
-                  delay: index * (isMobile ? 0.05 : 0.1), // Faster stagger on mobile
+                  duration: isMobile ? 0 : 0.5, // No animation on mobile
+                  delay: isMobile ? 0 : index * 0.1, // No delay on mobile
                   ease: "easeOut",
                 }}
                 whileHover={isMobile ? {} : { scale: 1.03, y: -5 }} // Disable hover animations on mobile
